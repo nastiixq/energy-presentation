@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Накопичення енергії та Smart Grid</title>
+<style>
+:root{--ink:#10223d;--card:#ffffffee;--a:#ff6b35;--b:#12b886;--c:#4263eb;--d:#fcc419;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#10223d;--card:#ffffffee}}
+:root[data-theme="dark"]{--ink:#10223d;--card:#ffffffee}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#10223d;overflow:hidden}
+.deck{height:100%;position:relative}
+.s{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:4vh 7vw 9vh;overflow-y:auto}
+.s.on{display:flex;animation:in .45s ease}
+@keyframes in{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+.g1{background:linear-gradient(135deg,#ff6b35,#fcc419)}.g2{background:linear-gradient(135deg,#4263eb,#15aabf)}
+.g3{background:linear-gradient(135deg,#12b886,#94d82d)}.g4{background:linear-gradient(135deg,#7048e8,#f06595)}
+.g5{background:linear-gradient(135deg,#1c7ed6,#12b886)}.g6{background:linear-gradient(135deg,#f76707,#e64980)}
+.g7{background:linear-gradient(135deg,#10223d,#4263eb)}
+h1{font-size:clamp(28px,5.4vw,60px);margin:.2em 0;color:#fff;line-height:1.1}
+h2{font-size:clamp(24px,4vw,42px);margin:0 0 .5em;color:#fff}
+.sub{font-size:clamp(15px,2vw,24px);color:#fff;opacity:.95}
+.row{display:flex;gap:2.5vw;align-items:center;flex-wrap:wrap}
+.card{background:var(--card);border-radius:22px;padding:2.2vh 2vw;flex:1 1 240px;box-shadow:0 10px 30px #0003;font-size:clamp(14px,1.7vw,21px);line-height:1.4}
+.card b{display:block;font-size:1.15em;margin-bottom:.3em}
+.pro{color:#0b7a56}.con{color:#c92a2a}
+.big{font-size:clamp(60px,11vw,130px);line-height:1;text-align:center;flex:0 1 auto;filter:drop-shadow(0 8px 12px #0004)}
+.pill{display:inline-block;background:#fff;border-radius:99px;padding:.3em .9em;font-weight:700;margin:.2em .3em .2em 0;font-size:clamp(13px,1.6vw,19px)}
+svg{max-width:100%}
+.nav{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);display:flex;justify-content:center;align-items:center;gap:14px;z-index:5}
+.nav button{border:0;border-radius:99px;background:#fff;color:var(--ink);font-size:20px;width:46px;height:46px;cursor:pointer;box-shadow:0 4px 12px #0004;font-weight:700}
+.dots{display:flex;gap:6px}.dots i{width:9px;height:9px;border-radius:50%;background:#fff6}.dots i.on{background:#fff;transform:scale(1.4)}
+.qbox{background:#fff;border-radius:24px;padding:3vh 3vw;box-shadow:0 12px 36px #0005;text-align:center}
+.qn{font-weight:700;color:var(--c)}
+.qt{font-size:clamp(18px,2.8vw,32px);font-weight:700;margin:.6em 0 1em}
+.btns{display:flex;gap:2vw;justify-content:center}
+.btns button{flex:1;max-width:260px;border:0;border-radius:16px;font-size:clamp(18px,2.4vw,28px);font-weight:800;padding:.7em;color:#fff;cursor:pointer}
+.t{background:var(--b)}.f{background:var(--a)}
+.btns button:disabled{opacity:.45;cursor:default}
+.fb{margin-top:1em;font-size:clamp(14px,1.8vw,21px);min-height:3.2em}
+.nx{margin-top:.6em;border:0;background:var(--c);color:#fff;border-radius:99px;padding:.6em 1.6em;font-size:18px;font-weight:700;cursor:pointer;display:none}
+.score{font-size:clamp(40px,8vw,90px);font-weight:800;color:var(--c)}
+</style></head><body>
+<div class="deck" id="deck">
+
+<section class="s g1">
+ <div class="row"><div class="big">⚡🔋</div><div style="flex:1 1 300px">
+ <h1>Інженерні виклики: накопичення енергії та Smart Grid</h1>
+ <p class="sub">Доповідь: Анастасія Москаленко та Софія Синюшкович</p></div></div>
+</section>
+
+<section class="s g2">
+ <h2>Чому це потрібно?</h2>
+ <div class="row">
+  <div class="card"><div class="big" style="font-size:70px">☀️</div><b>Сонце</b>Найбільше енергії — вдень</div>
+  <div class="card"><div class="big" style="font-size:70px">🌬️</div><b>Вітер</b>Залежить від сили вітру</div>
+  <div class="card"><div class="big" style="font-size:70px">🏠</div><b>Споживання</b>Змінюється протягом доби</div>
+ </div>
+ <p class="sub" style="margin-top:1.5em">Потрібні технології, що зберігають енергію до моменту, коли вона найбільш потрібна.</p>
+</section>
+
+<section class="s g3">
+ <h2>🔋 Акумуляторні батареї</h2>
+ <div class="row">
+  <div class="card"><b>Як працюють</b>Заряджання: електрична енергія → хімічна. Використання: зворотний процес, віддають струм.<br><br>📱 💻 🚗 🏭 — від смартфонів до промислових систем.</div>
+  <div class="card"><b class="pro">✅ Переваги</b>Швидко заряджаються й віддають енергію, резервне живлення, стабільність мереж.</div>
+  <div class="card"><b class="con">⚠️ Проблеми</b>Висока вартість, обмежений термін служби, спеціальні матеріали, складна переробка.</div>
+ </div>
+</section>
+
+<section class="s g4">
+ <h2>💧 Водневі технології</h2>
+ <div class="row">
+  <div class="card"><b>Зелений водень</b>Електроліз: струм від сонця чи вітру розділяє воду на водень і кисень.
+   <svg viewBox="0 0 300 70" width="100%"><circle cx="40" cy="35" r="22" fill="#4dabf7"/><text x="40" y="42" text-anchor="middle" font-size="20" fill="#fff" font-weight="700">H₂O</text><text x="105" y="43" font-size="30">⚡→</text><circle cx="190" cy="35" r="20" fill="#12b886"/><text x="190" y="42" text-anchor="middle" font-size="18" fill="#fff" font-weight="700">H₂</text><circle cx="250" cy="35" r="20" fill="#ff6b35"/><text x="250" y="42" text-anchor="middle" font-size="18" fill="#fff" font-weight="700">O₂</text></svg></div>
+  <div class="card"><b>Паливні елементи</b>Водень + кисень → електричний струм, а побічний продукт — вода. 🚌 🏭 ⚡</div>
+ </div>
+ <div class="row" style="margin-top:2vh">
+  <div class="card"><b class="pro">✅ Плюс</b>Тривале зберігання великих обсягів енергії.</div>
+  <div class="card"><b class="con">⚠️ Мінуси</b>Багато електрики на виробництво; зберігання й транспортування складні та дорогі.</div>
+ </div>
+</section>
+
+<section class="s g5">
+ <h2>🌐 Smart Grid — «розумна електромережа»</h2>
+ <div class="row">
+  <div class="card"><b>Що це</b>Електромережі + цифрові технології, датчики й автоматизоване управління. Обмін даними між виробниками, постачальниками й споживачами.<br><br>📟 розумні лічильники · 📡 датчики · 🖥️ аналітика</div>
+  <div class="card"><b class="pro">✅ Переваги</b>Менші втрати, вища надійність, легше підключати сонце й вітер, швидше реагування на аварії, контроль споживання.</div>
+  <div class="card"><b class="con">⚠️ Виклики</b>Великі витрати, сучасне обладнання, захист від кібератак і збоїв.</div>
+ </div>
+</section>
+
+<section class="s g6">
+ <h2>🤝 Разом сильніші — і важливо для України 🇺🇦</h2>
+ <div class="row">
+  <div class="card"><b>🔋 + 💧</b>Батареї та водень накопичують енергію.</div>
+  <div class="card"><b>🌐</b>Smart Grid правильно розподіляє її між споживачами.</div>
+ </div>
+ <p style="margin-top:1.5em"><span class="pill">Енергетична незалежність</span><span class="pill">Стабільне електропостачання</span><span class="pill">Більше відновлюваної енергії</span><span class="pill">Відбудова та модернізація</span></p>
+</section>
+
+<section class="s g7" id="quiz">
+ <div class="qbox" id="qbox"></div>
+</section>
+</div>
+
+<div class="nav"><button id="prev" aria-label="Назад">‹</button><div class="dots" id="dots"></div><button id="next" aria-label="Далі">›</button></div>
+
+<script>
+var Q=[
+["Сонячні електростанції виробляють найбільше енергії вдень.",true,"Саме так — тому енергію потрібно накопичувати."],
+["Під час заряджання акумулятор перетворює хімічну енергію на електричну.",false,"Навпаки: електрична → хімічна."],
+["Зелений водень отримують електролізом із використанням енергії сонця або вітру.",true,"Так, електроліз розділяє воду на водень і кисень."],
+["У паливних елементах побічним продуктом є вуглекислий газ.",false,"Побічний продукт — вода."],
+["Smart Grid дозволяє обмінюватися інформацією між виробниками, постачальниками й споживачами.",true,"Для цього є розумні лічильники, датчики та комп’ютерні системи."],
+["Водень легко та дешево зберігати й транспортувати.",false,"Зберігання і транспортування складні та дорогі."],
+["Системам Smart Grid не потрібен захист від кібератак.",false,"Це цифрові системи, тому захист інформації — обов’язковий."]
+];
+var S=[].slice.call(document.querySelectorAll('.s')),cur=0,i=0,sc=0,dots=document.getElementById('dots');
+S.forEach(function(_,k){dots.appendChild(document.createElement('i'))});
+function go(n){cur=Math.max(0,Math.min(S.length-1,n));S.forEach(function(s,k){s.classList.toggle('on',k==cur)});
+ [].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k==cur)});}
+function qs(){var b=document.getElementById('qbox');
+ if(i>=Q.length){b.innerHTML='<div class="qn">Результат</div><div class="score">'+sc+' / '+Q.length+'</div><div class="qt">'+(sc>=6?'Чудово! Ви справжній енергетик! 🏆':sc>=4?'Добре! 👍':'Спробуйте ще раз! 💪')+'</div><button class="nx" style="display:inline-block" onclick="i=0;sc=0;qs()">Грати знову</button><p style="font-size:20px">Дякуємо за увагу! 🙏</p>';return}
+ b.innerHTML='<div class="qn">«Правда чи хиба» · '+(i+1)+' з '+Q.length+'</div><div class="qt">'+Q[i][0]+'</div><div class="btns"><button class="t" onclick="ans(true)">✅ Правда</button><button class="f" onclick="ans(false)">❌ Хиба</button></div><div class="fb" id="fb"></div><button class="nx" id="nx" onclick="i++;qs()">'+(i==Q.length-1?'Результат ›':'Далі ›')+'</button>';}
+function ans(v){var ok=v===Q[i][1];if(ok)sc++;
+ document.getElementById('fb').innerHTML=(ok?'<b style="color:#0b7a56">Правильно! 🎉</b> ':'<b style="color:#c92a2a">Майже! 🤔</b> ')+Q[i][2];
+ [].forEach.call(document.querySelectorAll('.btns button'),function(x){x.disabled=true});
+ document.getElementById('nx').style.display='inline-block';}
+document.getElementById('prev').onclick=function(){go(cur-1)};
+document.getElementById('next').onclick=function(){go(cur+1)};
+document.addEventListener('keydown',function(e){if(e.key=='ArrowRight'||e.key==' ')go(cur+1);if(e.key=='ArrowLeft')go(cur-1)});
+var x0=null;document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX});
+document.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>70&&!e.target.closest('button'))go(cur+(d<0?1:-1));x0=null});
+qs();go(0);
+</script></body></html>
